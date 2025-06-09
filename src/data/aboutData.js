@@ -1,6 +1,7 @@
 export const aboutData = {
     title: "Who I am",
-    description1: "My name's Jane. I'm a web designer and developer based in Southampton, UK.",
-    description2: "During the day I work as a lead developer at a local agency and in the evening I  work on freelance projects and utilize the time to built my own products. I spent my leisure hours writing articles and poetry. Right now I'm also trying a hand at machine learning and AI. I love to learn and explore new arenas.",
+    description1: "My name's Sai Vivek Peddi. I'm a machine learning engineer based in Mountain View, CA.",
+    description2:
+        'I build scalable AI systems and research hardware acceleration for large language models. My career spans work at JPMorgan Chase, KFintech, and IIIT Hyderabad, and I enjoy exploring new technologies in both software and hardware.',
     image: 2
 }

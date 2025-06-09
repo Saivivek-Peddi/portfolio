@@ -1,23 +1,30 @@
 export const experienceData = [
     {
         id: 1,
-        company: 'Globex Corporation',
-        jobtitle: 'Frontend Developer',
-        startYear: '2018',
-        endYear: '2019'
+        company: 'JP Morgan Chase',
+        jobtitle: 'Senior Machine Learning Engineer',
+        startYear: 'Dec 2024',
+        endYear: 'Present',
     },
     {
         id: 2,
-        company: 'Vehement Capital Partners',
-        jobtitle: 'Backend Developer',
-        startYear: '2019',
-        endYear: '2020'
+        company: 'JP Morgan Chase',
+        jobtitle: 'Senior Software Engineer',
+        startYear: 'Jan 2023',
+        endYear: 'Dec 2024',
     },
     {
         id: 3,
-        company: 'Wonka Industries',
-        jobtitle: 'Marketing',
-        startYear: '2020',
-        endYear: 'Present'
+        company: 'KFintech',
+        jobtitle: 'Solutions Architect & Software Engineer',
+        startYear: 'Feb 2019',
+        endYear: 'Jul 2021',
+    },
+    {
+        id: 4,
+        company: 'IIIT Hyderabad',
+        jobtitle: 'Research Assistant',
+        startYear: 'Aug 2018',
+        endYear: 'Jan 2019',
     },
 ]
