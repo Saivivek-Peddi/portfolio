@@ -3,9 +3,9 @@ import profileImg from '../assets/png/profileImage.JPG'
 
 export const headerData = {
     name: 'Sai Vivek Peddi',
-    title: 'Machine Learning Engineer',
+    title: 'Senior Machine Learning Engineer',
     desciption:
-        'Building autonomous agents and accelerating LLMs. Experienced in distributed systems and cross-vendor GPU research.',
+        'Specializing in high-performance computing, distributed AI systems, and LLM acceleration. Building autonomous agents at scale and researching GPU optimization techniques.',
     image: profileImg,
     resumePdf: resume,
 }
