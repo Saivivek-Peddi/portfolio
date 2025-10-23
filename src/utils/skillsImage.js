@@ -75,6 +75,16 @@ import wolframalpha from '../assets/svg/skills/wolframalpha.svg'
 
 import canva from '../assets/svg/skills/canva.svg'
 
+// Custom skill logos
+import spark from '../assets/png/Apache_Spark_logo.svg.png'
+import hadoop from '../assets/png/hadoop.jpg'
+import kubernetes from '../assets/png/k8s.webp'
+import kafka from '../assets/png/kafka.png'
+import nodejs from '../assets/png/nodejs.png'
+import cuda from '../assets/png/NVIDIACuda_Logo.jpg'
+import sql from '../assets/png/sql.png'
+import terraform from '../assets/png/Terraform.png'
+
 
 export const skillsImage = (skill) => {
     const skillID = skill.toLowerCase();
@@ -227,6 +237,22 @@ export const skillsImage = (skill) => {
             return wolframalpha;
         case 'canva':
             return canva;
+        case 'spark':
+            return spark;
+        case 'hadoop':
+            return hadoop;
+        case 'kubernetes':
+            return kubernetes;
+        case 'kafka':
+            return kafka;
+        case 'node js':
+            return nodejs;
+        case 'cuda':
+            return cuda;
+        case 'sql':
+            return sql;
+        case 'terraform':
+            return terraform;
         default:
             break;
     }

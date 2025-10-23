@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { FaPlay, FaCode } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
@@ -7,6 +8,15 @@ import placeholder from '../../../assets/png/placeholder.png';
 import './SingleProject.css';
 
 function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
+    const history = useHistory();
+
+    const handleProjectClick = (e) => {
+        // Don't navigate if clicking on the demo or code buttons
+        if (e.target.closest('a')) {
+            return;
+        }
+        history.push(`/project/${id}`);
+    };
     const useStyles = makeStyles((t) => ({
         iconBtn: {
             display: 'flex',
@@ -40,6 +50,7 @@ function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
                 key={id}
                 className='singleProject'
                 style={{ backgroundColor: theme.primary400 }}
+                onClick={handleProjectClick}
             >
                 <div className='projectContent'>
                     <h2

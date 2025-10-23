@@ -1,0 +1,155 @@
+.projectDetail {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.projectDetail-header {
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.projectDetail-header > h1 {
+    font-size: 2.5rem;
+    font-family: var(--primaryFont);
+    text-align: center;
+    padding: 0 2rem;
+    line-height: 1.2;
+}
+
+.projectDetail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.projectDetail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.projectDetail-image {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.projectDetail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.projectDetail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid;
+}
+
+.projectDetail-tags span {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: var(--primaryFont);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.projectDetail-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.projectDetail-section {
+    margin: 2rem 0;
+}
+
+.projectDetail-section h2 {
+    font-family: var(--primaryFont);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.projectDetail-section p {
+    font-family: var(--primaryFont);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.projectDetail-features {
+    list-style: none;
+    padding: 0;
+}
+
+.projectDetail-features li {
+    font-family: var(--primaryFont);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.projectDetail-features li:before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.projectDetail-back {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .projectDetail-header {
+        height: 25vh;
+    }
+
+    .projectDetail-header > h1 {
+        font-size: 2rem;
+    }
+
+    .projectDetail-container {
+        padding: 2rem 1rem;
+    }
+
+    .projectDetail-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .projectDetail-section p,
+    .projectDetail-features li {
+        font-size: 0.95rem;
+    }
+
+    .projectDetail-tags {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .projectDetail-header > h1 {
+        font-size: 1.5rem;
+    }
+
+    .projectDetail-section h2 {
+        font-size: 1.3rem;
+    }
+}

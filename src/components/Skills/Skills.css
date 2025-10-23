@@ -24,15 +24,19 @@
 .skillsContainer {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     width: 100%;
-    margin-top: 3.5rem;
+    max-width: 1400px;
+    margin: 3.5rem auto 0;
     padding: 0 2rem;
 }
 
-.skill--scroll {
+.skills--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
     width: 100%;
-    margin: 0 2rem;
+    justify-items: center;
 }
 
 
@@ -42,17 +46,16 @@
     border-radius: 10px;
     width: 160px;
     height: 160px;
-    margin: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
     transition: 300ms ease-in-out;
 }
 
 .skill--box:hover  {
-    transform: scale(1.15);
+    transform: scale(1.08);
 }
 
 
@@ -95,26 +98,28 @@
     }
     .skillsContainer {
         padding: 1rem;
-        margin: 1rem 0;
+        margin-top: 2rem;
+    }
+    .skills--grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.5rem;
     }
     .skillsHeader h2 {
         font-size: 3.2rem;
     }
     .skill--box {
-        width: 150px;
-        height: 150px;
-        margin: 1.2rem;
-        padding: 2rem 1rem;
+        width: 140px;
+        height: 140px;
+        padding: 1.5rem 1rem;
     }
 
     .skill--box > img {
         height: 45px;
     }
 
-
     .skill--box h3 {
         font-size: 20px;
-        margin-top: 1rem;
+        margin-top: 0.8rem;
     }
 
 }
@@ -126,22 +131,24 @@
     .skillsContainer {
         padding: 0.5rem;
     }
+    .skills--grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 1.2rem;
+    }
     .skillsHeader h2 {
         font-size: 3rem;
-    }
-
-    .skill--scroll {
-        width: 100%;
-        margin: 0;
     }
 }
 
 @media screen and (max-width: 600px) {
+    .skills--grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
     .skill--box {
-        width: 135px;
-        height: 135px;
-        margin: 1.2rem;
-        padding: 2rem 1rem;
+        width: 120px;
+        height: 120px;
+        padding: 1.2rem 0.8rem;
     }
 
     .skill--box > img {
@@ -153,8 +160,8 @@
     }
 
     .skill--box h3 {
-        font-size: 18px;
-        margin-top: 1rem;
+        font-size: 16px;
+        margin-top: 0.6rem;
     }
 }
 

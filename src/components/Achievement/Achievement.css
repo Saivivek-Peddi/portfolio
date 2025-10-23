@@ -44,7 +44,8 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    height: 170px;
+    min-height: 200px;
+    height: auto;
     padding: 1.5rem;
     border-radius: 20px;
     margin-bottom: 1.5rem;
@@ -58,59 +59,65 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-around;
-    width: 65%;
-   
+    justify-content: flex-start;
+    width: 70%;
+    padding-right: 1rem;
 }
 
 .achievecard-details2 {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 100%;
     align-items: center;
     font-family: var(--primaryFont);
-    font-size: 18px;
-    position: absolute;
-    bottom: 7px;
-    left: 25px;
+    font-size: 16px;
+    margin-top: 1rem;
+    gap: 2rem;
 }
 
 .achievecard-details2 h5 {
-   width: 50%;
+   margin: 0;
 }
 
 .achievecard-field {
-    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 6px;
 }
 
 .achievecard-field svg {
-    margin-right: 6px;
+    flex-shrink: 0;
 }
 
 .achievecard-details1 h2 {
     font-family: var(--primaryFont);
     font-weight: 500;
     font-size: 1.225rem;
-    line-height: 110%;
-    margin-bottom: 6px;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
 }
 
 .achievecard-details1 p {
-    font-size: 1.10rem;
+    font-size: 1rem;
     font-family: Roboto;
     font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
 }
 
 .achievecard-imgcontainer {
-    width: 23%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .achievecard-imgcontainer > img {
-    width: 150px;
-    height: 130px;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
     border-radius: 10px;
 }
 
@@ -192,10 +199,10 @@
     }
 
     .achievecard-details2 {
-        width: 85%;
-        position: absolute;
-        bottom: 7px;
-        left: 25px;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 1rem;
+        font-size: 14px;
     }
 
     .achievecard-imgcontainer {
@@ -205,8 +212,10 @@
     }
 
     .achievecard-imgcontainer > img {
-        width: 80px;
-        height: 70px;
+        width: 100%;
+        max-width: 80px;
+        height: auto;
+        object-fit: contain;
     }
     
 }
@@ -230,8 +239,10 @@
         font-size: 0.95rem;
     }
     .achievecard-imgcontainer > img {
-        width: 70px;
-        height: 60px;
+        width: 100%;
+        max-width: 70px;
+        height: auto;
+        object-fit: contain;
     }
 
 }

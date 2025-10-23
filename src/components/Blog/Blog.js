@@ -1,12 +1,8 @@
-import React,{ useContext} from 'react';
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { HiArrowRight } from "react-icons/hi";
 
 import './Blog.css';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { blogData } from '../../data/blogData'
-import SingleBlog from './SingleBlog/SingleBlog';
 
 
 function Blog() {
@@ -14,70 +10,89 @@ function Blog() {
     const { theme } = useContext(ThemeContext);
 
     const useStyles = makeStyles(() => ({
-        viewAllBtn : {
-            color: theme.tertiary, 
+        viewBtn : {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            padding: '12px 24px',
+            borderRadius: '8px',
+            border: `2px solid ${theme.primary}`,
+            color: theme.tertiary,
             backgroundColor: theme.primary,
-            "&:hover": {
-                color: theme.secondary, 
-                backgroundColor: theme.primary,
-            }
-        },
-        viewArr : {
-            color: theme.tertiary, 
-            backgroundColor: theme.secondary70,
-            width: '40px',
-            height: '40px',
-            padding: '0.5rem',
-            fontSize: '1.05rem',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            "&:hover": {
-                color: theme.tertiary, 
-                backgroundColor: theme.secondary,
-            }
+            textDecoration: 'none',
+            fontSize: '1rem',
+            fontWeight: 500,
+            transition: 'all 0.3s',
+            '&:hover': {
+                backgroundColor: theme.primary600,
+                transform: 'translateY(-2px)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            },
         },
     }));
 
     const classes = useStyles();
 
+    const handleIframeClick = () => {
+        window.open('https://f20150220.gitlab.io/blogs-and-projects/', '_blank');
+    };
+
     return (
-        <>
-            {blogData.length > 0 && (
-                <div className="blog" id="blog" style={{backgroundColor: theme.secondary}}>
-                    <div className="blog--header">
-                        <h1 style={{color: theme.primary}}>Blog</h1>
-                    </div>
-                    <div className="blog--body">
-                        <div className="blog--bodyContainer">
-                            {blogData.slice(0, 3).reverse().map(blog => (
-                                <SingleBlog 
-                                    theme={theme}
-                                    title={blog.title}
-                                    desc={blog.description}
-                                    date={blog.date}
-                                    image={blog.image}
-                                    url={blog.url}
-                                    key={blog.id}
-                                    id={blog.id}
-                                />
-                            ))}
-                        </div> 
-
-                        {blogData.length > 3 && (
-                            <div className="blog--viewAll">
-                                <Link to="/blog">
-                                    <button className={classes.viewAllBtn}>
-                                        View All
-                                        <HiArrowRight className={classes.viewArr} />
-                                    </button>
-                                </Link>
-                            </div>
-                        )}
-                    </div>
+        <div className="blog" id="blog" style={{backgroundColor: theme.secondary}}>
+            <div className="blog--header">
+                <h1 style={{color: theme.primary}}>Blogs & Projects</h1>
+                <p style={{color: theme.tertiary, textAlign: 'center', marginTop: '1rem', fontSize: '1.1rem'}}>
+                    Technical writings, research articles, and project documentation
+                </p>
+            </div>
+            <div className="blog--preview">
+                <div
+                    className="blog--iframe-container"
+                    onClick={handleIframeClick}
+                    style={{
+                        cursor: 'pointer',
+                        position: 'relative',
+                    }}
+                >
+                    <iframe
+                        src="https://f20150220.gitlab.io/blogs-and-projects/"
+                        title="Blogs and Projects"
+                        style={{
+                            width: '100%',
+                            height: '600px',
+                            border: 'none',
+                            borderRadius: '12px',
+                            boxShadow: theme.type === 'dark'
+                                ? '0 8px 24px rgba(0,0,0,0.4)'
+                                : '0 8px 24px rgba(0,0,0,0.15)',
+                            pointerEvents: 'none',
+                        }}
+                    />
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'transparent',
+                            cursor: 'pointer',
+                        }}
+                    />
                 </div>
-            )}
-
-        </>
+                <div className="blog--viewAll" style={{marginTop: '2rem'}}>
+                    <a
+                        href="https://f20150220.gitlab.io/blogs-and-projects/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={classes.viewBtn}
+                    >
+                        Visit Full Blog Site →
+                    </a>
+                </div>
+            </div>
+        </div>
     )
 }
 

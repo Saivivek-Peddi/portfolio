@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import axios from 'axios';
 import isEmail from 'validator/lib/isEmail';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -134,22 +133,17 @@ function Contacts() {
 
         if (name && email && message) {
             if (isEmail(email)) {
-                const responseData = {
-                    name: name,
-                    email: email,
-                    message: message,
-                };
+                // FormSubmit will handle the submission and send email
+                // Form will POST directly to FormSubmit endpoint
+                setSuccess(true);
+                setErrMsg('');
 
-                axios.post(contactsData.sheetAPI, responseData).then((res) => {
-                    console.log('success');
-                    setSuccess(true);
-                    setErrMsg('');
-
+                // Form will redirect after submission, but we'll reset fields
+                setTimeout(() => {
                     setName('');
                     setEmail('');
                     setMessage('');
-                    setOpen(false);
-                });
+                }, 1000);
             } else {
                 setErrMsg('Invalid email');
                 setOpen(true);
@@ -170,9 +164,19 @@ function Contacts() {
                 <h1 style={{ color: theme.primary }}>Contacts</h1>
                 <div className='contacts-body'>
                     <div className='contacts-form'>
-                        <form onSubmit={handleContactForm}>
+                        <form
+                            action="https://formsubmit.co/peddisaivivek999@gmail.com"
+                            method="POST"
+                            onSubmit={handleContactForm}
+                        >
+                            {/* FormSubmit Configuration */}
+                            <input type="hidden" name="_subject" value="New contact from Portfolio Website!" />
+                            <input type="hidden" name="_captcha" value="false" />
+                            <input type="hidden" name="_template" value="table" />
+                            <input type="hidden" name="_next" value={window.location.origin + "?submitted=true"} />
+
                             <div className='input-container'>
-                                <label htmlFor='Name' className={classes.label}>
+                                <label htmlFor='name' className={classes.label}>
                                     Name
                                 </label>
                                 <input
@@ -180,13 +184,15 @@ function Contacts() {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     type='text'
-                                    name='Name'
+                                    name='name'
+                                    id='name'
+                                    required
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
                             <div className='input-container'>
                                 <label
-                                    htmlFor='Email'
+                                    htmlFor='email'
                                     className={classes.label}
                                 >
                                     Email
@@ -196,13 +202,15 @@ function Contacts() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type='email'
-                                    name='Email'
+                                    name='email'
+                                    id='email'
+                                    required
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
                             <div className='input-container'>
                                 <label
-                                    htmlFor='Message'
+                                    htmlFor='message'
                                     className={classes.label}
                                 >
                                     Message
@@ -211,8 +219,9 @@ function Contacts() {
                                     placeholder='Type your message....'
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
-                                    type='text'
-                                    name='Message'
+                                    name='message'
+                                    id='message'
+                                    required
                                     className={`form-message ${classes.message}`}
                                 />
                             </div>
