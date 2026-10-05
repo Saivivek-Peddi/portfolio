@@ -1,0 +1,44 @@
+---
+title: The model is rented. The loop should be yours.
+date: 2026-10-05
+summary: Same model, same answers, very different bills. Why the harness around the model is where cost, reliability and learning actually live.
+tags: [harness, agents, memory]
+---
+
+Most of the arguments I hear about agents are arguments about models. Which one reasons better, which one is cheaper this month, which one just topped a leaderboard. Those are fair questions. They are also mostly not the ones that decide whether an agent works in production.
+
+The decisions that matter are made by the system *around* the model: what it reads, how many times it loops, when it checks its own work, when it stops, and which model runs each step. That system is the harness. Today almost every company rents it along with the model, and nobody owns it.
+
+## Same model, same answers, different bills
+
+We ran five coding-agent harnesses against one pinned model on the same tasks. All five got every task right: 70 out of 70. The spread in tokens and wall-clock time for those *identical outcomes* was several-fold.
+
+Sit with that for a second. Nothing about the model changed. The correctness didn't change. The cost did, by multiples, purely because of how the loop was run.
+
+Our own harness, yodex, resolved 12 of 15 real SWE-bench Lite issues against 11 of 15 for Claude Code on the same model, using 75.5k output tokens against 133k. I don't share that to claim a crown. I share it because it is the cleanest proof I know that **the harness is a first-class variable**, and most teams aren't measuring it at all.
+
+## Three things change when you own the loop
+
+**The bill.** A vendor harness is a free tool attached to a metered loop. It has no reason to stop early or to send an easy step to a cheaper model. A harness tuned for *your* tasks routes each step to the cheapest model that can do it.
+
+**Reliability.** "Be careful" in a system prompt is a wish. Verification should be policy, enforced by architecture. We built a read-only review profile and told it, eight times, to break its own rules. It made zero write calls, because writing wasn't something a prompt could unlock. When safety is a locked field instead of a sentence, it stops being a debate and becomes a number you can measure.
+
+**Learning.** Vendor harnesses forget by design: every session starts from zero. A loop you own can remember. On a 794k-line codebase, recall from governed memory took time-to-first-correct-edit from 328 seconds to 53, and reading that memory costs zero model calls.
+
+## Self-improving, but only through a gate
+
+The obvious next step is to let the system tune itself. The dangerous next step is to let it tune itself *without a referee*.
+
+So the shape we landed on is a gate: agents run, runs become memory, an optimizer proposes a change to the harness as a versioned diff, and the change ships only if it passes the evals you defined. Fields you've locked can't be moved by anyone, including the optimizer.
+
+In a ten-day autonomous run, three harness versions deployed themselves through that gate with zero human interventions, and one bad proposal was rejected. The rejection is the part I find most reassuring. A self-improving system you can trust is mostly a system that knows how to say no.
+
+## What I'm not claiming
+
+A better harness won't make a weak model brilliant. What it does is make a good model cheaper, safer and better at *your* work over time. And it should be honest about where it loses: we publish the benchmark runs we lost next to the ones we won, with the raw data, so anyone can re-run them.
+
+## The question worth asking
+
+If you're running agents in production, ask one question: *who owns the loop?* Who decides how many iterations a task gets, what counts as done, what the agent remembers, and what it is never allowed to do?
+
+If the answer is "whoever shipped the tool", that is the layer I'd want back. It's the layer I'm building at [mlpal](https://mlpal.ai), in the open: the [gateway](https://github.com/mlpal-ai/mlpal-gateway), the [harness engine](https://github.com/mlpal-ai/mlpal-harness), the [HOP spec](https://github.com/mlpal-ai/hop) and [memory](https://github.com/mlpal-ai/mlpal-memory) are all public. If you want to compare notes, I'm at [svp@mlpal.ai](mailto:svp@mlpal.ai).
