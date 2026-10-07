@@ -2,6 +2,13 @@ import { expect, test, type Page } from '@playwright/test'
 
 const PAGES = ['/', '/notes/', '/notes/the-loop-should-be-yours/', '/404.html']
 
+// Never depend on a third-party API in tests: answer the weather request locally.
+test.beforeEach(async ({ page }) => {
+  await page.route('https://api.open-meteo.com/**', (route) =>
+    route.fulfill({ json: { current: { temperature_2m: 18.4 } } }),
+  )
+})
+
 function collectErrors(page: Page): string[] {
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))

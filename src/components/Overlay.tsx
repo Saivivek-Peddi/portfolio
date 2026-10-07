@@ -42,10 +42,18 @@ function useLocalTime() {
   return label
 }
 
+const WEATHER_TIMEOUT_MS = 4000
+
 function useTemperature() {
   const [temp, setTemp] = useState<number | null>(null)
   useEffect(() => {
     const ctrl = new AbortController()
+    let timedOut = false
+    // Give up after 4 s: the status bar then shows the time without a temperature.
+    const timer = window.setTimeout(() => {
+      timedOut = true
+      ctrl.abort()
+    }, WEATHER_TIMEOUT_MS)
     fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${MOUNTAIN_VIEW.lat}&longitude=${MOUNTAIN_VIEW.lon}&current=temperature_2m`,
       { signal: ctrl.signal },
@@ -53,9 +61,14 @@ function useTemperature() {
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((d) => setTemp(Math.round(d.current.temperature_2m)))
       .catch((e) => {
-        if (e.name !== 'AbortError') console.warn('[status] weather unavailable:', e.message)
+        if (timedOut) console.warn(`[status] weather timed out after ${WEATHER_TIMEOUT_MS} ms`)
+        else if (e.name !== 'AbortError') console.warn('[status] weather unavailable:', e.message)
       })
-    return () => ctrl.abort()
+      .finally(() => clearTimeout(timer))
+    return () => {
+      clearTimeout(timer)
+      ctrl.abort()
+    }
   }, [])
   return temp
 }
