@@ -155,27 +155,22 @@ function Cricket() {
 /* ---------- Kitchen ---------- */
 
 function Kitchen() {
-  const [front, ...back] = life.kitchen.photos
   return (
     <Tile label="Kitchen" className="group md:col-span-4">
-      <div className="relative mt-4 h-52" aria-label="From my kitchen" role="group">
-        {back.map((p, i) => (
+      <div className="relative mt-4 h-52" role="group" aria-label="From my kitchen">
+        {life.kitchen.photos.map((p, i) => (
           <img
             key={p.src}
             src={p.src}
             alt={p.alt}
             loading="lazy"
-            className={`absolute top-2 h-44 w-36 object-cover shadow-xl transition-transform duration-700 ease-out-expo ${
-              i === 0 ? 'left-[8%] -rotate-6 group-hover:-translate-x-6 group-hover:-rotate-12' : 'right-[8%] rotate-6 group-hover:translate-x-6 group-hover:rotate-12'
+            className={`absolute top-1 h-48 w-40 object-cover shadow-2xl transition-transform duration-700 ease-out-expo ${
+              i === 0
+                ? 'left-[12%] z-10 -rotate-3 group-hover:-translate-x-3 group-hover:-rotate-6'
+                : 'right-[12%] rotate-6 group-hover:translate-x-3 group-hover:rotate-12'
             }`}
           />
         ))}
-        <img
-          src={front.src}
-          alt={front.alt}
-          loading="lazy"
-          className="absolute top-0 left-1/2 h-48 w-40 -translate-x-1/2 object-cover shadow-2xl transition-transform duration-700 ease-out-expo group-hover:-translate-y-2 group-hover:scale-105"
-        />
       </div>
       <ul className="mt-auto space-y-1 pt-6 text-[1.05rem]">
         {life.kitchen.lines.map((l) => (

@@ -5,7 +5,6 @@ export const life = {
     photos: [
       { src: '/kitchen/naan.webp', alt: 'Naan with curry and lime, plated on a dark table' },
       { src: '/kitchen/plated.webp', alt: 'A plated dish with greens beside a glass of red wine' },
-      { src: '/kitchen/curry.webp', alt: 'Curry and naan, shot from above' },
     ],
   },
   cricket: {
