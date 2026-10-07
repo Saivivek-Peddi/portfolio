@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Notes by Sai Vivek Peddi</title>
+    <link>https://www.svpeddi.com/notes/</link>
+    <description>Notes on harnesses, agents, memory and building mlpal.</description>
+    <language>en</language>
+    <item>
+      <title>The model is rented. The loop should be yours.</title>
+      <link>https://www.svpeddi.com/notes/the-loop-should-be-yours/</link>
+      <guid>https://www.svpeddi.com/notes/the-loop-should-be-yours/</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>Same model, same answers, very different bills. Why the harness around the model is where cost, reliability and learning actually live.</description>
+    </item>
+  </channel>
+</rss>

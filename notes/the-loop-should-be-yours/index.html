@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png" />
+    <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="Notes by Sai Vivek Peddi" href="/rss.xml" />
+    <title>The model is rented. The loop should be yours.</title>
+    <meta name="description" content="Same model, same answers, very different bills. Why the harness around the model is where cost, reliability and learning actually live." />
+    <meta name="author" content="Sai Vivek Peddi" />
+    <link rel="canonical" href="https://www.svpeddi.com/notes/the-loop-should-be-yours/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The model is rented. The loop should be yours." />
+    <meta property="og:description" content="Same model, same answers, very different bills. Why the harness around the model is where cost, reliability and learning actually live." />
+    <meta property="og:url" content="https://www.svpeddi.com/notes/the-loop-should-be-yours/" />
+    <meta property="og:image" content="https://www.svpeddi.com/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="article:published_time" content="2026-10-05" />
+    <script>
+      // Resolve the theme before first paint so there is no flash.
+      ;(function () {
+        var root = document.documentElement
+        root.classList.remove('no-js')
+        var pref = 'auto'
+        try {
+          pref = localStorage.getItem('theme') || 'auto'
+        } catch (e) {}
+        var dark = pref === 'dark' || (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)
+        root.dataset.theme = dark ? 'dark' : 'light'
+        root.dataset.themePref = pref
+      })()
+    </script>
+    <script type="module" crossorigin src="/assets/index-BfPJb2gq.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bz4F4hXY.css">
+  </head>
+  <body>
+    <div id="root" data-path="/notes/the-loop-should-be-yours/"><a href="#main" class="ui sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-lime focus:px-3 focus:py-2 focus:text-black">Skip to content</a><div class="pointer-events-none fixed inset-0 z-40 flex flex-col justify-between"><header class="pointer-events-auto flex items-start justify-between px-5 pt-5 transition-colors duration-300 md:px-16 md:pt-9 text-fg"><a href="/" class="text-[0.95rem] font-bold uppercase tracking-tight">Sai Vivek Peddi</a><nav aria-label="Primary" class="ui flex items-center gap-6 md:gap-14"><a href="/#story" class="wipe hidden sm:inline">Story</a><a href="/#built" class="wipe hidden sm:inline">Built</a><a href="/#life" class="wipe hidden sm:inline">Life</a><a href="/#lens" class="wipe hidden sm:inline">Lens</a><a href="/#writing" class="wipe hidden sm:inline">Writing</a><button type="button" class="wipe uppercase" aria-label="Theme: auto. Change theme">Theme[<!-- -->A<!-- -->]</button><button type="button" class="wipe hidden uppercase md:inline" aria-pressed="false">Sound[<span class=""> </span>]</button></nav></header><footer class="ui flex items-end justify-between px-5 pb-5 normal-case transition-colors duration-300 md:px-16 md:pb-8 text-fg"><span class="uppercase"></span><span class="hidden md:inline"><span class="tabular-nums" aria-hidden="true">0000 X 0000 Y</span></span><svg viewBox="0 0 40 24" class="h-5 w-8" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><ellipse cx="20" cy="12" rx="18" ry="10.5"></ellipse><path d="M2 12h36M5 6.5h30M5 17.5h30"></path><ellipse class="globe-spin" cx="20" cy="12" rx="9" ry="10.5"></ellipse><ellipse class="globe-spin globe-spin-2" cx="20" cy="12" rx="9" ry="10.5"></ellipse></svg></footer></div><main id="main"><article class="px-5 pt-36 pb-40 md:px-16 md:pt-44"><div class="grid grid-cols-12 gap-x-4"><div class="ui col-span-12 mb-10 text-dim md:col-span-3 md:mb-0"><a href="/notes/" class="wipe">← Writing</a><p class="mt-6"><time dateTime="2026-10-05">October 5, 2026</time></p><p>3<!-- --> min read</p></div><div class="col-span-12 md:col-span-9"><h1 class="max-w-[18ch] text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.98] font-[640] tracking-[-0.025em]" style="view-transition-name:note-the-loop-should-be-yours">The model is rented. The loop should be yours.</h1><div class="prose-note mt-16"><p>Most of the arguments I hear about agents are arguments about models. Which one reasons better, which one is cheaper this month, which one just topped a leaderboard. Those are fair questions. They are also mostly not the ones that decide whether an agent works in production.</p>
+<p>The decisions that matter are made by the system <em>around</em> the model: what it reads, how many times it loops, when it checks its own work, when it stops, and which model runs each step. That system is the harness. Today almost every company rents it along with the model, and nobody owns it.</p>
+<h2>Same model, same answers, different bills</h2>
+<p>We ran five coding-agent harnesses against one pinned model on the same tasks. All five got every task right: 70 out of 70. The spread in tokens and wall-clock time for those <em>identical outcomes</em> was several-fold.</p>
+<p>Sit with that for a second. Nothing about the model changed. The correctness didn&#x27;t change. The cost did, by multiples, purely because of how the loop was run.</p>
+<p>Our own harness, yodex, resolved 12 of 15 real SWE-bench Lite issues against 11 of 15 for Claude Code on the same model, using 75.5k output tokens against 133k. I don&#x27;t share that to claim a crown. I share it because it is the cleanest proof I know that <strong>the harness is a first-class variable</strong>, and most teams aren&#x27;t measuring it at all.</p>
+<h2>Three things change when you own the loop</h2>
+<p><strong>The bill.</strong> A vendor harness is a free tool attached to a metered loop. It has no reason to stop early or to send an easy step to a cheaper model. A harness tuned for <em>your</em> tasks routes each step to the cheapest model that can do it.</p>
+<p><strong>Reliability.</strong> &quot;Be careful&quot; in a system prompt is a wish. Verification should be policy, enforced by architecture. We built a read-only review profile and told it, eight times, to break its own rules. It made zero write calls, because writing wasn&#x27;t something a prompt could unlock. When safety is a locked field instead of a sentence, it stops being a debate and becomes a number you can measure.</p>
+<p><strong>Learning.</strong> Vendor harnesses forget by design: every session starts from zero. A loop you own can remember. On a 794k-line codebase, recall from governed memory took time-to-first-correct-edit from 328 seconds to 53, and reading that memory costs zero model calls.</p>
+<h2>Self-improving, but only through a gate</h2>
+<p>The obvious next step is to let the system tune itself. The dangerous next step is to let it tune itself <em>without a referee</em>.</p>
+<p>So the shape we landed on is a gate: agents run, runs become memory, an optimizer proposes a change to the harness as a versioned diff, and the change ships only if it passes the evals you defined. Fields you&#x27;ve locked can&#x27;t be moved by anyone, including the optimizer.</p>
+<p>In a ten-day autonomous run, three harness versions deployed themselves through that gate with zero human interventions, and one bad proposal was rejected. The rejection is the part I find most reassuring. A self-improving system you can trust is mostly a system that knows how to say no.</p>
+<h2>What I&#x27;m not claiming</h2>
+<p>A better harness won&#x27;t make a weak model brilliant. What it does is make a good model cheaper, safer and better at <em>your</em> work over time. And it should be honest about where it loses: we publish the benchmark runs we lost next to the ones we won, with the raw data, so anyone can re-run them.</p>
+<h2>The question worth asking</h2>
+<p>If you&#x27;re running agents in production, ask one question: <em>who owns the loop?</em> Who decides how many iterations a task gets, what counts as done, what the agent remembers, and what it is never allowed to do?</p>
+<p>If the answer is &quot;whoever shipped the tool&quot;, that is the layer I&#x27;d want back. It&#x27;s the layer I&#x27;m building at <a href="https://mlpal.ai">mlpal</a>, in the open: the <a href="https://github.com/mlpal-ai/mlpal-gateway">gateway</a>, the <a href="https://github.com/mlpal-ai/mlpal-harness">harness engine</a>, the <a href="https://github.com/mlpal-ai/hop">HOP spec</a> and <a href="https://github.com/mlpal-ai/mlpal-memory">memory</a> are all public. If you want to compare notes, I&#x27;m at <a href="mailto:svp@mlpal.ai">svp@mlpal.ai</a>.</p></div><p class="mono mt-20 max-w-[40rem] border-t border-line pt-6 text-dim">Sai Vivek Peddi<!-- -->. Thoughts on this? I read everything at<!-- --> <a href="mailto:svp@mlpal.ai" class="wipe text-fg">svp@mlpal.ai</a></p></div></div></article></main></div>
+  </body>
+</html>
