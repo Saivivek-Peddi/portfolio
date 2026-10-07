@@ -26,7 +26,7 @@ for (const path of PAGES) {
 
 test('home has every section and no horizontal overflow', async ({ page }) => {
   await page.goto('/')
-  for (const id of ['about', 'story', 'built', 'life', 'community', 'research', 'writing', 'contact']) {
+  for (const id of ['about', 'story', 'built', 'life', 'lens', 'community', 'research', 'writing', 'contact']) {
     await expect(page.locator(`#${id}`)).toBeAttached()
   }
   await expect(page.locator('#built article')).toHaveCount(8)
@@ -104,8 +104,13 @@ test('badminton rally counts hits', async ({ page, isMobile }) => {
   await page.locator('#life').scrollIntoViewIfNeeded()
   const court = page.getByRole('application', { name: /Badminton mini-game/ })
   // locator.click waits for the element to stop moving (smooth scroll settles first).
-  await court.locator('div.absolute.top-0').click()
-  await expect(page.getByText(/Rally 1/)).toBeVisible()
+  const shuttle = court.locator('[data-ready]')
+  await expect(shuttle).toHaveAttribute('data-ready', 'true')
+  // Smooth scroll keeps easing for a moment after the jump; retry until a hit lands.
+  await expect(async () => {
+    await shuttle.click()
+    await expect(page.getByText(/Rally [1-9]/)).toBeVisible({ timeout: 400 })
+  }).toPass({ timeout: 10_000 })
 })
 
 test('Project Hail Mary says hi', async ({ page }) => {
@@ -114,4 +119,26 @@ test('Project Hail Mary says hi', async ({ page }) => {
   await book.scrollIntoViewIfNeeded()
   await book.click()
   await expect(book).toContainText('Fist my bump')
+})
+
+test('hero introduces Sai once, with the nickname', async ({ page }) => {
+  await page.goto('/')
+  const hero = page.locator('section[aria-labelledby="hero-title"]')
+  await expect(hero.getByText("I'm Sai. Close friends call me Peddi.")).toBeVisible()
+  const text = (await hero.innerText()).toLowerCase()
+  expect(text.match(/\bsai\b/g)?.length).toBe(1)
+  expect(text.match(/dosa/g)?.length).toBe(1)
+})
+
+test('photo lightbox opens, steps and closes', async ({ page }) => {
+  await page.goto('/')
+  const first = page.locator('#lens button[aria-label^="Open photo"]:visible').first()
+  await first.scrollIntoViewIfNeeded()
+  await first.click()
+  const dialog = page.getByRole('dialog')
+  await expect(dialog).toHaveAttribute('aria-label', 'Black-necked stilt')
+  await page.keyboard.press('ArrowRight')
+  await expect(dialog).toHaveAttribute('aria-label', 'Milky Way')
+  await page.keyboard.press('Escape')
+  await expect(dialog).toHaveCount(0)
 })

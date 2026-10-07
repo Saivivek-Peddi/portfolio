@@ -35,6 +35,8 @@ function Badminton() {
   const rallyRef = useRef(0)
   const [rally, setRally] = useState(0)
   const [best, setBest] = useState(0)
+  // The shuttle stays hidden until it's been placed on the court (after hydration).
+  const [ready, setReady] = useState(false)
 
   const floor = () => (court.current?.clientHeight ?? 300) - 70
   const place = () => {
@@ -48,6 +50,7 @@ function Badminton() {
     s.x = (court.current?.clientWidth ?? 400) / 2
     s.y = floor()
     place()
+    setReady(true)
     return () => cancelAnimationFrame(raf.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -105,7 +108,7 @@ function Badminton() {
       <div ref={court} onPointerDown={hit} className="relative mt-4 min-h-[240px] flex-1 cursor-pointer touch-none select-none" role="application" aria-label="Badminton mini-game: tap the shuttlecock to keep the rally going">
         <div className="absolute inset-x-0 bottom-6 h-px bg-line" aria-hidden />
         <div className="absolute bottom-6 left-1/2 h-16 w-px -translate-x-1/2 bg-line" aria-hidden />
-        <div ref={shuttle} className="absolute top-0 left-0 will-change-transform">
+        <div ref={shuttle} data-ready={ready} className={`absolute top-0 left-0 will-change-transform transition-opacity ${ready ? 'opacity-100' : 'opacity-0'}`}>
           <Shuttle />
         </div>
       </div>
@@ -152,16 +155,29 @@ function Cricket() {
 /* ---------- Kitchen ---------- */
 
 function Kitchen() {
+  const [front, ...back] = life.kitchen.photos
   return (
     <Tile label="Kitchen" className="group md:col-span-4">
-      <svg viewBox="0 0 200 110" className="mt-4 h-28 w-full" aria-hidden>
-        <path className="steam" d="M70 28c-8-10 8-14 0-24M100 24c-8-10 8-14 0-24M130 28c-8-10 8-14 0-24" fill="none" stroke="var(--fg)" strokeWidth="2.5" strokeLinecap="round" opacity="0.4" />
-        <g className="proof">
-          <path d="M30 96c-6-40 24-60 70-60s76 20 70 60z" fill="#d9a35b" stroke="var(--fg)" strokeWidth="2.5" />
-          <path d="M66 52c8 8 8 20 0 30M100 48c8 8 8 22 0 34M134 52c8 8 8 20 0 30" fill="none" stroke="#9c6526" strokeWidth="3" strokeLinecap="round" />
-        </g>
-      </svg>
-      <ul className="mt-auto space-y-1 text-[1.05rem]">
+      <div className="relative mt-4 h-52" aria-label="From my kitchen" role="group">
+        {back.map((p, i) => (
+          <img
+            key={p.src}
+            src={p.src}
+            alt={p.alt}
+            loading="lazy"
+            className={`absolute top-2 h-44 w-36 object-cover shadow-xl transition-transform duration-700 ease-out-expo ${
+              i === 0 ? 'left-[8%] -rotate-6 group-hover:-translate-x-6 group-hover:-rotate-12' : 'right-[8%] rotate-6 group-hover:translate-x-6 group-hover:rotate-12'
+            }`}
+          />
+        ))}
+        <img
+          src={front.src}
+          alt={front.alt}
+          loading="lazy"
+          className="absolute top-0 left-1/2 h-48 w-40 -translate-x-1/2 object-cover shadow-2xl transition-transform duration-700 ease-out-expo group-hover:-translate-y-2 group-hover:scale-105"
+        />
+      </div>
+      <ul className="mt-auto space-y-1 pt-6 text-[1.05rem]">
         {life.kitchen.lines.map((l) => (
           <li key={l}>{l}</li>
         ))}

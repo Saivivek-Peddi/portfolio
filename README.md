@@ -11,8 +11,8 @@ glass-and-cobalt site with a 3D hero, physics stickers and a hyperspace finale.
   the same stack the Awwwards references use. three.js and matter.js are code-split and load
   after first paint.
 - Type: TikTok Sans (variable, OFL) for everything, Geist Mono for UI labels.
-- The hero writes "sai" as a glass tube along a hand-drawn path (`src/components/hero/saiPath.ts`,
-  also used for the signature). On a software WebGL renderer, or a device that can't hold the
+- The hero writes "hello" as a glass tube along a hand-drawn path (`src/components/hero/helloPath.ts`);
+  the "sai" signature over the portrait is `saiPath.ts`. On a software WebGL renderer, or a device that can't hold the
   frame rate, it falls back to a static backdrop or a frozen frame.
 - `prefers-reduced-motion` turns off smooth scroll, the write-on and the sticker drop.
 
@@ -53,6 +53,7 @@ Copy lives in `src/content/`:
 - `story.ts`: the chapters of the horizontal story scroll.
 - `built.ts`: things built across the years; each card gets a generative cover (`components/BuiltArt.tsx`).
 - `life.ts`: off-the-clock tiles (badminton game, cricket, kitchen, music, books) and the quotes used in the finale.
+- `lens.ts`: photography (exports in `public/lens/`, drone loop `drone.mp4`). People-free shots only.
 - `research.ts`: mlpal research index, selected papers and teaching.
 
 ## Deploy

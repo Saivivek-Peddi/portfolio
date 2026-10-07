@@ -7,9 +7,10 @@ export const profile = {
   location: 'Mountain View, CA',
   timeZone: 'America/Los_Angeles',
   email: 'svp@mlpal.ai',
-  headline: "Hi, I'm Sai.\nI build AI systems\nand great dosa.",
+  intro: "I'm Sai. Close friends call me Peddi.",
+  headline: 'I build AI systems\nand great dosa.',
   summary:
-    "I'm Sai Vivek Peddi. I grew up in Hyderabad, now live in Mountain View, and spend my days making machine learning systems faster, cheaper and more trustworthy. Currently co-founding mlpal.",
+    'Grew up in Hyderabad, now in Mountain View. I make machine learning systems faster, cheaper and more trustworthy, and I co-founded mlpal.',
   photoAlt: 'Sai Vivek Peddi, smiling, in a white sweater, sitting in front of window blinds',
   links: {
     mlpal: 'https://mlpal.ai',
@@ -19,8 +20,9 @@ export const profile = {
     githubOrg: 'https://github.com/mlpal-ai',
     linkedin: 'https://www.linkedin.com/in/saivivek-peddi',
     mlpalLinkedin: 'https://www.linkedin.com/company/mlpalresearch',
+    instagram: 'https://www.instagram.com/_forgotten_chornicles/',
   },
 } as const
 
 export const description =
-  'Sai Vivek Peddi: engineer, researcher and co-founder of mlpal. From GPU kernels to coding agents, plus dosa, cricket, badminton and books.'
+  'Sai Vivek Peddi: engineer, researcher and co-founder of mlpal. From GPU kernels to coding agents, plus photography, dosa, cricket, badminton and books.'

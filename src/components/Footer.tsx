@@ -4,6 +4,7 @@ import { profile } from '../content/profile'
 const LINKS = [
   { label: 'LinkedIn', href: profile.links.linkedin },
   { label: 'GitHub', href: profile.links.github },
+  { label: 'Instagram', href: profile.links.instagram },
   { label: 'mlpal.ai', href: profile.links.mlpal },
   { label: 'RSS', href: '/rss.xml' },
 ]

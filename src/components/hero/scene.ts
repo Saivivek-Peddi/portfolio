@@ -1,6 +1,17 @@
 import * as THREE from 'three'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
-import { SAI_DOT, SAI_POINTS, SAI_VIEWBOX } from './saiPath'
+import { HELLO_POINTS } from './helloPath'
+
+function bounds(points: [number, number][]) {
+  const xs = points.map((p) => p[0])
+  const ys = points.map((p) => p[1])
+  const minX = Math.min(...xs)
+  const maxX = Math.max(...xs)
+  const minY = Math.min(...ys)
+  const maxY = Math.max(...ys)
+  return { cx: (minX + maxX) / 2, cy: (minY + maxY) / 2, width: maxX - minX, height: maxY - minY }
+}
+const BOUNDS = bounds(HELLO_POINTS)
 
 export type Theme = 'light' | 'dark'
 
@@ -10,11 +21,25 @@ export type HeroScene = {
   dispose: () => void
 }
 
-type Palette = { deep: string; mid: string; light: string; bands: number; glass: string; attenuation: string; cursor: string }
+type Palette = {
+  deep: string
+  mid: string
+  light: string
+  bands: number
+  softness: number
+  grain: number
+  glass: string
+  attenuation: string
+  attenuationDistance: number
+  exposure: number
+  cursor: string
+}
 
 const PALETTES: Record<Theme, Palette> = {
-  dark: { deep: '#050c4f', mid: '#1b31d6', light: '#9fb2ff', bands: 0.75, glass: '#e4e9ff', attenuation: '#8fa2ff', cursor: '#3b74ff' },
-  light: { deep: '#a4cbee', mid: '#cfe5f7', light: '#fff8e8', bands: 0.42, glass: '#e3eeff', attenuation: '#86aef2', cursor: '#2f6bff' },
+  dark: { deep: '#000114', mid: '#0308ab', light: '#5872ff', bands: 0.75, softness: 1, grain: 0.035, glass: '#e4e9ff', attenuation: '#8fa2ff', attenuationDistance: 3.2, exposure: 1.05, cursor: '#3b74ff' },
+  // Light: saturated sky with warm sun bands; the tube is tinted deep blue so it
+  // reads against the sky instead of going milky.
+  light: { deep: '#9ec8ee', mid: '#c6e2f7', light: '#fff4d8', bands: 0.8, softness: 0.55, grain: 0.012, glass: '#dbe6ff', attenuation: '#4a78f2', attenuationDistance: 1.7, exposure: 1, cursor: '#2f6bff' },
 }
 
 const UNITS_PER_PX = 1 / 46
@@ -33,6 +58,8 @@ const BACKGROUND_FRAGMENT = /* glsl */ `
   uniform vec3 uMid;
   uniform vec3 uLight;
   uniform float uBands;
+  uniform float uSoft;
+  uniform float uGrain;
   varying vec2 vUv;
 
   float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -47,15 +74,17 @@ const BACKGROUND_FRAGMENT = /* glsl */ `
     float t = uTime * 0.035;
     vec2 p = uv + (uMouse - 0.5) * 0.04;
     float warp = noise(p * 2.2 + t) * 0.35;
-    float d = (p.x * 0.82 + p.y * 0.58) * 5.5 + warp;
+    float d = (p.x * 0.82 + p.y * 0.58) * 5.5 * uSoft + warp;
     float bands = 0.0;
-    bands += smoothstep(0.35, 1.0, sin(d * 3.1 - t * 6.0) * 0.5 + 0.5) * 0.55;
-    bands += smoothstep(0.55, 1.0, sin(d * 5.3 + 1.7 - t * 4.0) * 0.5 + 0.5) * 0.35;
+    float lo = mix(0.0, 0.35, uSoft);
+    bands += smoothstep(lo, 1.0, sin(d * 3.1 - t * 6.0) * 0.5 + 0.5) * 0.55;
+    bands += smoothstep(lo + 0.2, 1.0, sin(d * 5.3 + 1.7 - t * 4.0) * 0.5 + 0.5) * 0.35;
     float vignette = smoothstep(1.15, 0.2, distance(uv, vec2(0.62, 0.58)));
     vec3 col = mix(uDeep, uMid, vignette);
     col = mix(col, uLight, bands * vignette * uBands);
-    col += (hash(uv * 900.0 + uTime) - 0.5) * 0.035;
-    gl_FragColor = vec4(col, 1.0);
+    // Grain goes on after the sRGB conversion so it reads the same in both themes.
+    gl_FragColor = linearToOutputTexel(vec4(col, 1.0));
+    gl_FragColor.rgb += (hash(uv * 900.0 + uTime) - 0.5) * uGrain;
   }
 `
 
@@ -67,12 +96,11 @@ const BACKGROUND_VERTEX = /* glsl */ `
   }
 `
 
-function saiCurve(): THREE.CatmullRomCurve3 {
-  const cx = SAI_VIEWBOX.width / 2
-  const cy = 170
-  const n = SAI_POINTS.length
+function wordCurve(): THREE.CatmullRomCurve3 {
+  const { cx, cy } = BOUNDS
+  const n = HELLO_POINTS.length
   // A gentle z wave lifts retraced strokes off each other so crossings read in 3D.
-  const points = SAI_POINTS.map(([x, y], i) => {
+  const points = HELLO_POINTS.map(([x, y], i) => {
     const t = i / (n - 1)
     return new THREE.Vector3((x - cx) * UNITS_PER_PX * 2.1, -(y - cy) * UNITS_PER_PX * 2.1, Math.sin(t * Math.PI * 7) * 0.32)
   })
@@ -116,7 +144,6 @@ function findCusps(curve: THREE.Curve<THREE.Vector3>, samples = 600): number[] {
 }
 
 const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
-const easeOutBack = (t: number) => 1 + 2.4 * Math.pow(t - 1, 3) + 1.4 * Math.pow(t - 1, 2)
 
 export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme; reducedMotion: boolean }): HeroScene {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' })
@@ -141,6 +168,8 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     uMid: { value: new THREE.Color() },
     uLight: { value: new THREE.Color() },
     uBands: { value: 0.75 },
+    uSoft: { value: 1 },
+    uGrain: { value: 0.035 },
   }
   const background = new THREE.Mesh(
     new THREE.PlaneGeometry(1, 1),
@@ -159,7 +188,6 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     iridescenceThicknessRange: [120, 520],
     clearcoat: 1,
     clearcoatRoughness: 0.06,
-    attenuationDistance: 3.2,
     envMapIntensity: 1.25,
     specularIntensity: 1,
   })
@@ -167,7 +195,7 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
   const word = new THREE.Group()
   scene.add(word)
 
-  const curve = saiCurve()
+  const curve = wordCurve()
   const tubeGeo = new THREE.TubeGeometry(curve, TUBE_SEGMENTS, TUBE_RADIUS, RADIAL_SEGMENTS, false)
   const tube = new THREE.Mesh(tubeGeo, glass)
   word.add(tube)
@@ -188,11 +216,6 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     return { u, bead }
   })
 
-  const cx = SAI_VIEWBOX.width / 2
-  const dot = new THREE.Mesh(new THREE.SphereGeometry(TUBE_RADIUS * 1.1, 32, 16), glass)
-  dot.position.set((SAI_DOT.x - cx) * UNITS_PER_PX * 2.1, -(SAI_DOT.y - 170) * UNITS_PER_PX * 2.1, 0.2)
-  dot.scale.setScalar(0.001)
-  word.add(dot)
 
   const cursorMat = new THREE.MeshPhysicalMaterial({ roughness: 0.22, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.08 })
   const cursor = new THREE.Mesh(cursorGeometry(), cursorMat)
@@ -205,8 +228,12 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     bgUniforms.uMid.value.set(p.mid)
     bgUniforms.uLight.value.set(p.light)
     bgUniforms.uBands.value = p.bands
+    bgUniforms.uSoft.value = p.softness
+    bgUniforms.uGrain.value = p.grain
     glass.color.set(p.glass)
     glass.attenuationColor.set(p.attenuation)
+    glass.attenuationDistance = p.attenuationDistance
+    renderer.toneMappingExposure = p.exposure
     cursorMat.color.set(p.cursor)
   }
   applyTheme(opts.theme)
@@ -225,10 +252,12 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     background.scale.set(bgH * camera.aspect * 1.1, bgH * 1.1, 1)
     viewH = 2 * Math.tan(THREE.MathUtils.degToRad(FOV / 2)) * CAMERA_Z
     viewW = viewH * camera.aspect
-    const wordWidth = 548 - 40
-    const target = (w < 768 ? 0.92 : 0.62) * viewW
-    word.scale.setScalar(Math.min(1.25, target / (wordWidth * UNITS_PER_PX * 2.1)))
-    word.position.set(w < 768 ? 0 : viewW * 0.06, w < 768 ? viewH * 0.08 : viewH * 0.02, 0)
+    // Fit the word inside the band between the top copy and the headline, by width and by height.
+    const unit = UNITS_PER_PX * 2.1
+    const byWidth = ((w < 768 ? 0.9 : 0.56) * viewW) / (BOUNDS.width * unit)
+    const byHeight = ((w < 768 ? 0.3 : 0.4) * viewH) / (BOUNDS.height * unit)
+    word.scale.setScalar(Math.min(1.25, byWidth, byHeight))
+    word.position.set(w < 768 ? 0 : viewW * 0.08, w < 768 ? viewH * 0.06 : viewH * 0.1, 0)
     // No pointer to follow on touch screens, and no room beside the headline.
     cursor.visible = w >= 768 && matchMedia('(pointer: fine)').matches
   }
@@ -276,8 +305,6 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     if (writeStart < 0) writeStart = t
     const w = opts.reducedMotion ? 1 : Math.min(1, (t - writeStart - 0.25) / WRITE_SECONDS)
     setWrite(Math.max(0, easeInOutCubic(Math.max(0, w))))
-    const dotT = opts.reducedMotion ? 1 : Math.min(1, Math.max(0, (t - writeStart - 0.25 - WRITE_SECONDS * 0.72) / 0.55))
-    dot.scale.setScalar(Math.max(0.001, easeOutBack(dotT)))
 
     pointer.lerp(pointerTarget, 0.06)
     bgUniforms.uTime.value = t
@@ -320,7 +347,6 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     } else {
       frozen = true
       setWrite(1)
-      dot.scale.setScalar(1)
       renderer.render(scene, camera)
       stop()
       console.info('[hero] still slow; holding a static frame')

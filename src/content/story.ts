@@ -47,7 +47,7 @@ export const chapters: Chapter[] = [
   {
     when: '2026',
     place: 'mlpal',
-    line: 'Co-founded mlpal with Dipak, to give companies ownership of the loop around the model.',
+    line: 'Co-founded mlpal with Dipak Ghosal and Prem Jain, to give companies ownership of the loop around the model.',
     detail: 'Gateway, harness and memory. Open source, research-led.',
   },
 ]

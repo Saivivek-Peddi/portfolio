@@ -130,18 +130,23 @@ export function Hero() {
         <p className="mono col-span-6 mt-6 hidden md:col-span-4 md:mt-1 md:block">
           Kernels to agents.
           <br />
-          Dosa to homemade bread.
+          Courts to kitchens.
           <br />
-          Hyderabad to Mountain View.
+          Shutter to stars.
         </p>
         <p className="mono col-span-12 mt-4 max-w-[46ch] md:col-span-4 md:mt-1">
           {profile.summary}
         </p>
 
         <div className="col-span-12 row-start-3 flex items-end justify-between gap-6">
-          <h1 id="hero-title" className="shout text-[clamp(2.4rem,5.6vw,5.8rem)]">
-            <Rise text={profile.headline} delay={2} />
-          </h1>
+          <div>
+            <p className="mb-4 text-[clamp(1.15rem,1.7vw,1.6rem)] font-[450] tracking-[-0.01em]">
+              <Rise text={profile.intro} delay={1} />
+            </p>
+            <h1 id="hero-title" className="shout text-[clamp(2.4rem,5.6vw,5.8rem)]">
+              <Rise text={profile.headline} delay={4} />
+            </h1>
+          </div>
           <p className="ui mb-2 hidden shrink-0 text-fg/60 lg:block">[ Click anywhere ]</p>
         </div>
       </div>

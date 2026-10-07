@@ -196,8 +196,8 @@
 /* Static backdrop shown before (or instead of) the WebGL scene. */
 .hero-backdrop {
   background:
-    radial-gradient(120% 90% at 62% 58%, #c4e0f6 0%, #9cc6ec 70%),
-    #9cc6ec;
+    radial-gradient(120% 90% at 62% 58%, #c6e2f7 0%, #9ec8ee 75%),
+    #9ec8ee;
 }
 [data-theme='dark'] .hero-backdrop {
   background:
@@ -260,12 +260,12 @@
   0% { transform: translate(0, 0) scale(1); opacity: 1; }
   100% { transform: translate(-420px, -340px) scale(0.4); opacity: 0; }
 }
-.steam { opacity: 0; transition: opacity 400ms; }
-.group:hover .steam { opacity: 0.4; animation: steam 1.6s ease-in-out infinite; }
-@keyframes steam { 50% { transform: translateY(-4px); } }
-.proof { transform-box: fill-box; transform-origin: bottom; transition: transform 1.2s var(--ease-out-expo); }
-.group:hover .proof { transform: scale(1.06, 1.14); }
 .eq { height: 30%; animation: eq 1s ease-in-out infinite alternate; }
 @keyframes eq { 0% { height: 15%; } 50% { height: 100%; } 100% { height: 45%; } }
 .track { animation: track-in 600ms var(--ease-out-expo) both; }
 @keyframes track-in { from { opacity: 0; translate: 0 8px; } }
+
+.lightbox { animation: overlay-fade 300ms var(--ease-out-expo) both; }
+.lightbox-img img { animation: lightbox-in 600ms var(--ease-out-expo) both; }
+@keyframes overlay-fade { from { opacity: 0; } }
+@keyframes lightbox-in { from { opacity: 0; scale: 0.96; } }

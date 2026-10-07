@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { beliefs } from '../content/life'
 
-const PHRASES = ['Success is\nnot final', 'Failure is\nnot fatal', 'The courage\nto continue\ncounts', 'Stay hungry\nstay\nfoolish']
+const PHRASES = ['Success is\nnot final.', 'Failure is\nnot fatal.', "It's the courage\nto continue\nthat counts.", 'Stay hungry,\nstay\nfoolish.']
 const COLORS = ['#5cf2ff', '#3a6bff', '#8a5cff', '#ffffff', '#20d7ff', '#3a6bff']
 const STARS = 640
 
@@ -119,7 +120,9 @@ export function Finale() {
           <p key={phrase} className="phrase shout text-[clamp(2.8rem,8vw,8.5rem)] whitespace-pre-line">
             {PHRASES[phrase]}
           </p>
-          <p className="ui mt-8 text-white/60">{phrase < 3 ? 'Churchill. The line I keep coming back to.' : 'The banner on my LinkedIn.'}</p>
+          <p className="ui mx-auto mt-8 max-w-[44ch] text-white/60">
+            {phrase < 3 ? <>&ldquo;{beliefs.churchill}&rdquo; &mdash; Winston Churchill. The line I keep coming back to.</> : 'The banner on my LinkedIn.'}
+          </p>
         </div>
       </div>
     </section>

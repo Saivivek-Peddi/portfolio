@@ -56,8 +56,8 @@ export function About() {
           <a href={profile.links.mlpal} className="text-fg underline decoration-1 underline-offset-[0.12em] hover:bg-lime hover:text-black">
             mlpal
           </a>{' '}
-          with Dipak Ghosal. Off the clock you&rsquo;ll find me on a badminton court, bowling a few overs, baking
-          bread, or halfway through a{' '}
+          with Dipak Ghosal and Prem Jain. Off the clock you&rsquo;ll find me on a badminton court, bowling a few
+          overs, behind a camera, baking bread, or halfway through a{' '}
           <a href="#life" className="text-fg underline decoration-1 underline-offset-[0.12em] hover:bg-lime hover:text-black">
             book
           </a>
