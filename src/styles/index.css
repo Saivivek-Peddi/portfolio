@@ -259,3 +259,25 @@
 .lightbox-img img { animation: lightbox-in 600ms var(--ease-out-expo) both; }
 @keyframes overlay-fade { from { opacity: 0; } }
 @keyframes lightbox-in { from { opacity: 0; scale: 0.96; } }
+
+/* The big community number is filled with the hero's sky, with a slow band of sunlight drifting across. */
+.count-fill {
+  background-image:
+    linear-gradient(105deg, transparent 35%, rgb(255 246 222 / 0.85) 50%, transparent 65%),
+    linear-gradient(160deg, #a9d3f5 0%, #5f93e8 45%, #2a4fd6 100%);
+  background-size: 250% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: count-sheen 7s ease-in-out infinite;
+}
+[data-theme='dark'] .count-fill {
+  background-image:
+    linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.55) 50%, transparent 65%),
+    linear-gradient(160deg, #e9ffb0 0%, #d7ff3a 50%, #9fd11a 100%);
+}
+@keyframes count-sheen {
+  0% { background-position: 120% 0, 0 0; }
+  60%, 100% { background-position: -20% 0, 0 0; }
+}

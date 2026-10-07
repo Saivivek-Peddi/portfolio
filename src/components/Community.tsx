@@ -41,7 +41,7 @@ export function Community() {
           BITS Pilani Alumni Association, Silicon Valley
         </a>
       </div>
-      <p className="shout col-span-12 mt-12 text-[clamp(4.5rem,17vw,17rem)] leading-[0.85] text-cobalt dark:text-lime">
+      <p className="shout col-span-12 mt-12 text-[clamp(4.5rem,17vw,17rem)] leading-[0.85] count-fill">
         <CountUp to={BITSIANS} play={inView} />
       </p>
       <p className="ui col-span-12 mt-3 text-dim">BITSians in the Bay Area</p>
