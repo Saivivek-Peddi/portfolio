@@ -21,6 +21,7 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/saivivek-peddi',
     mlpalLinkedin: 'https://www.linkedin.com/company/mlpalresearch',
     instagram: 'https://www.instagram.com/_forgotten_chornicles/',
+    bitsaa: 'https://www.instagram.com/bitsaa.svc/',
   },
 } as const
 
