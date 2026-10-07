@@ -1,0 +1,31 @@
+# Sai Vivek Peddi
+
+> Engineer, researcher and co-founder of mlpal (https://mlpal.ai). Grew up in Hyderabad; B.E. BITS Pilani, M.S. CS UC Davis; previously KFintech and JPMorgan Chase. Co-founded mlpal with Dipak Ghosal and Prem Jain. Builds ML systems from GPU kernels to coding agents. COO of the BITS alumni association in the Bay Area (11,000 BITSians). Goes by Sai; close friends call him Peddi. Photographer (Instagram @_forgotten_chornicles). Off the clock: badminton, cricket (all-rounder, Dhoni fan), cooking (dosa, homemade bread), music, books. Based in Mountain View, CA. Contact: svp@mlpal.ai
+
+## Pages
+
+- [Home](https://www.svpeddi.com/): story, things I've built, life off the clock, photography, community, research and teaching
+- [Notes](https://www.svpeddi.com/notes/): essays in my own words
+- [RSS](https://www.svpeddi.com/rss.xml)
+
+## Notes
+
+- [The model is rented. The loop should be yours.](https://www.svpeddi.com/notes/the-loop-should-be-yours/): why the harness around the model is where cost, reliability and learning live
+
+## mlpal research
+
+- [All papers and benchmark reports](https://mlpal.ai/research)
+- [A HOP with Memory from Day One](https://mlpal.ai/research/hop-infra-memory-from-day-one)
+- [Memory as Governed Infrastructure](https://mlpal.ai/research/memory-as-governed-infrastructure)
+- [HOP: Harness Optimization Profiles](https://mlpal.ai/research/hop-harness-optimization-profiles)
+- [MLPal Gateway: Curation Over Breadth](https://mlpal.ai/research/mlpal-gateway-curation-over-breadth)
+- [Decoupling the Harness from the Model](https://mlpal.ai/research/decoupling-harness-from-model)
+
+## Open source
+
+- [mlpal-gateway](https://github.com/mlpal-ai/mlpal-gateway)
+- [mlpal-harness](https://github.com/mlpal-ai/mlpal-harness)
+- [hop](https://github.com/mlpal-ai/hop)
+- [yodex](https://github.com/mlpal-ai/yodex)
+- [mlpal-memory](https://github.com/mlpal-ai/mlpal-memory)
+- [mlpal-assistants-sdk](https://github.com/mlpal-ai/mlpal-assistants-sdk)
