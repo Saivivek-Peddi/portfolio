@@ -25,8 +25,5 @@ export const life = {
   },
 } as const
 
-// The lines Sai keeps coming back to (from his interview and LinkedIn).
-export const beliefs = {
-  churchill: "Success is not final. Failure is not fatal. It's the courage to continue that counts.",
-  own: "Things you think will happen might not, and things you don't expect might.",
-}
+// The closing line on the home page.
+export const closingQuote = { text: 'Stay hungry, stay foolish.', author: 'Steve Jobs' }

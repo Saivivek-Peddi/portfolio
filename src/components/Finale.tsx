@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { beliefs } from '../content/life'
+import { closingQuote } from '../content/life'
 import { Rise } from './Rise'
 
 const COLORS = ['#5cf2ff', '#3a6bff', '#8a5cff', '#ffffff', '#20d7ff', '#3a6bff']
@@ -105,15 +105,15 @@ export function Finale() {
 
   useWarp(canvas, active, boost)
 
-  // One quote, whole, on one screen. No pinning: the page keeps scrolling.
+  // One line on one screen. No pinning: the page keeps scrolling.
   return (
     <section ref={section} data-ink="light" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-black text-white" aria-label="Closing quote">
       <canvas ref={canvas} className="absolute inset-0 h-full w-full" aria-hidden />
       <figure className="relative px-5 text-center">
-        <blockquote className="mx-auto max-w-[19ch] text-[clamp(2rem,4.8vw,4.6rem)] leading-[1.05] font-[620] tracking-[-0.02em] text-balance">
-          <Rise text={beliefs.churchill} />
+        <blockquote className="shout text-[clamp(3rem,9vw,9rem)]">
+          <Rise text={closingQuote.text} />
         </blockquote>
-        <figcaption className="ui mt-8 text-white/60">Winston Churchill</figcaption>
+        <figcaption className="ui mt-8 text-white/60">{closingQuote.author}</figcaption>
       </figure>
     </section>
   )
