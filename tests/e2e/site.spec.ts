@@ -26,10 +26,10 @@ for (const path of PAGES) {
 
 test('home has every section and no horizontal overflow', async ({ page }) => {
   await page.goto('/')
-  for (const id of ['about', 'work', 'research', 'writing', 'contact']) {
+  for (const id of ['about', 'story', 'built', 'life', 'community', 'research', 'writing', 'contact']) {
     await expect(page.locator(`#${id}`)).toBeAttached()
   }
-  await expect(page.locator('#research li')).toHaveCount(8)
+  await expect(page.locator('#built article')).toHaveCount(8)
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
   expect(overflow).toBeLessThanOrEqual(0)
 })
@@ -38,7 +38,7 @@ test('prerendered HTML carries the content without JavaScript', async ({ browser
   const context = await browser.newContext({ javaScriptEnabled: false })
   const page = await context.newPage()
   await page.goto('/')
-  await expect(page.locator('h1')).toContainText('loop')
+  await expect(page.locator('h1')).toContainText('great dosa')
   await expect(page.getByText('svp@mlpal.ai').first()).toBeVisible()
   await context.close()
 })
@@ -96,4 +96,22 @@ test('feeds list every note', async ({ request }) => {
   const sitemap = await (await request.get('/sitemap.xml')).text()
   expect(rss).toContain('https://www.svpeddi.com/notes/the-loop-should-be-yours/')
   expect(sitemap).toContain('https://www.svpeddi.com/notes/the-loop-should-be-yours/')
+})
+
+test('badminton rally counts hits', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'pointer aiming is desktop-only in this test')
+  await page.goto('/')
+  await page.locator('#life').scrollIntoViewIfNeeded()
+  const court = page.getByRole('application', { name: /Badminton mini-game/ })
+  // locator.click waits for the element to stop moving (smooth scroll settles first).
+  await court.locator('div.absolute.top-0').click()
+  await expect(page.getByText(/Rally 1/)).toBeVisible()
+})
+
+test('Project Hail Mary says hi', async ({ page }) => {
+  await page.goto('/')
+  const book = page.getByRole('button', { name: /Project Hail Mary/ })
+  await book.scrollIntoViewIfNeeded()
+  await book.click()
+  await expect(book).toContainText('Fist my bump')
 })

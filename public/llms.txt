@@ -1,10 +1,10 @@
 # Sai Vivek Peddi
 
-> Founder of mlpal (https://mlpal.ai): a model gateway, a tunable harness and governed memory that companies own outright and that improves against their own evals. Open source, self-hosted or managed. Based in Mountain View, CA. Contact: svp@mlpal.ai
+> Engineer, researcher and co-founder of mlpal (https://mlpal.ai). Grew up in Hyderabad; B.E. BITS Pilani, M.S. CS UC Davis; previously KFintech and JPMorgan Chase. Builds ML systems from GPU kernels to coding agents. COO of the BITS alumni association in the Bay Area (11,000 BITSians). Off the clock: badminton, cricket (all-rounder, Dhoni fan), cooking (dosa, homemade bread), music, books. Based in Mountain View, CA. Contact: svp@mlpal.ai
 
 ## Pages
 
-- [Home](https://www.svpeddi.com/): what I'm building, research, open source, background
+- [Home](https://www.svpeddi.com/): story, things I've built, life off the clock, community, research and teaching
 - [Notes](https://www.svpeddi.com/notes/): essays in my own words
 - [RSS](https://www.svpeddi.com/rss.xml)
 

@@ -2,13 +2,14 @@ export const SITE_URL = 'https://www.svpeddi.com'
 
 export const profile = {
   name: 'Sai Vivek Peddi',
-  role: 'Founder, mlpal',
+  role: 'Co-founder, mlpal',
+  hometown: 'Hyderabad',
   location: 'Mountain View, CA',
   timeZone: 'America/Los_Angeles',
   email: 'svp@mlpal.ai',
-  tagline: 'I build the loop around the model.',
+  headline: "Hi, I'm Sai.\nI build AI systems\nand great dosa.",
   summary:
-    'Founder of mlpal: a model gateway, a tunable harness and governed memory that companies own outright, and that keeps improving against their own evals. Open source, self-hosted or managed.',
+    "I'm Sai Vivek Peddi. I grew up in Hyderabad, now live in Mountain View, and spend my days making machine learning systems faster, cheaper and more trustworthy. Currently co-founding mlpal.",
   photoAlt: 'Sai Vivek Peddi, smiling, in a white sweater, sitting in front of window blinds',
   links: {
     mlpal: 'https://mlpal.ai',
@@ -22,4 +23,4 @@ export const profile = {
 } as const
 
 export const description =
-  'Sai Vivek Peddi, founder of mlpal. Model gateway, tunable harness, governed memory. Research, open source and notes.'
+  'Sai Vivek Peddi: engineer, researcher and co-founder of mlpal. From GPU kernels to coding agents, plus dosa, cricket, badminton and books.'

@@ -49,10 +49,11 @@ note's slug in the error. Reading time is computed at compile time.
 
 Copy lives in `src/content/`:
 
-- `profile.ts`: name, links, email.
-- `work.ts`: the project cards (screenshots in `public/work/` are captures of mlpal.ai).
-- `research.ts`: mirrors <https://mlpal.ai/research>.
-- `openSource.ts`: repos and install commands.
+- `profile.ts`: name, headline, links, email.
+- `story.ts`: the chapters of the horizontal story scroll.
+- `built.ts`: things built across the years; each card gets a generative cover (`components/BuiltArt.tsx`).
+- `life.ts`: off-the-clock tiles (badminton game, cricket, kitchen, music, books) and the quotes used in the finale.
+- `research.ts`: mlpal research index, selected papers and teaching.
 
 ## Deploy
 

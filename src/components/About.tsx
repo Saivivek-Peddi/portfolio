@@ -49,17 +49,17 @@ export function About() {
 
       <div className="col-span-12 md:col-span-8 md:col-start-5">
         <p className="text-[clamp(1.75rem,3.1vw,3.1rem)] leading-[1.08] font-[420] tracking-[-0.015em]">
-          <Rise text="I explore how agents should run: what they read, when they check their own work, what they remember, and when they stop." />
+          <Rise text="I grew up in Hyderabad, studied my way into BITS Pilani, and have spent the years since making machine learning systems faster, cheaper and more trustworthy." />
         </p>
         <p className="mt-10 text-[clamp(1.75rem,3.1vw,3.1rem)] leading-[1.08] font-[420] tracking-[-0.015em] text-dim">
-          I&rsquo;m building{' '}
+          Today I&rsquo;m co-founding{' '}
           <a href={profile.links.mlpal} className="text-fg underline decoration-1 underline-offset-[0.12em] hover:bg-lime hover:text-black">
             mlpal
-          </a>
-          <sup className="text-[0.4em]">&trade;</sup>, and before that shipped coding agents at JPMorgan Chase, wrote
-          sparse GPU kernels at UC Davis, and built data platforms at KFintech. Everything we measure is{' '}
-          <a href={profile.links.research} className="text-fg underline decoration-1 underline-offset-[0.12em] hover:bg-lime hover:text-black">
-            published
+          </a>{' '}
+          with Dipak Ghosal. Off the clock you&rsquo;ll find me on a badminton court, bowling a few overs, baking
+          bread, or halfway through a{' '}
+          <a href="#life" className="text-fg underline decoration-1 underline-offset-[0.12em] hover:bg-lime hover:text-black">
+            book
           </a>
           .
         </p>

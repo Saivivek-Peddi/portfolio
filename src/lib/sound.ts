@@ -31,4 +31,6 @@ export const sound = {
   pop: () => blip(520 + Math.random() * 380, 160, 0.16, 0.12),
   tick: () => blip(1800, 1400, 0.03, 0.03, 'square'),
   thud: (strength: number) => blip(140, 60, 0.12, Math.min(0.08, strength * 0.01), 'triangle'),
+  // Rocky talks in chords.
+  chord: () => [523, 659, 784].forEach((f, i) => setTimeout(() => blip(f, f, 0.22, 0.07, 'triangle'), i * 140)),
 }

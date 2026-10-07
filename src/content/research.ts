@@ -88,13 +88,50 @@ export const research: ResearchItem[] = [
   },
 ]
 
-export const isFirstAuthor = (item: ResearchItem) => item.authors.startsWith(AUTHOR)
+// Papers on the home page: Sai's first-author work, the harness paper, and his
+// UC Davis audio paper. The full mlpal index lives at mlpal.ai/research.
+export type SelectedPaper = { year: string; title: string; venue: string; url: string; preview?: string }
 
-export function formatResearchDate(iso: string): string {
-  const [y, m, d] = iso.split('-').map(Number)
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-US', {
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
-  })
-}
+export const selectedResearch: SelectedPaper[] = [
+  {
+    year: '2026',
+    title: 'A HOP with Memory from Day One',
+    venue: 'mlpal research, first author',
+    url: 'https://mlpal.ai/research/hop-infra-memory-from-day-one',
+    preview: '/work/paper-hop-infra.webp',
+  },
+  {
+    year: '2026',
+    title: 'MLPal Gateway: Curation Over Breadth',
+    venue: 'Technical report, first author',
+    url: 'https://mlpal.ai/research/mlpal-gateway-curation-over-breadth',
+    preview: '/work/paper-gateway.webp',
+  },
+  {
+    year: '2026',
+    title: 'HOP: Harness Optimization Profiles',
+    venue: 'mlpal research',
+    url: 'https://mlpal.ai/research/hop-harness-optimization-profiles',
+    preview: '/work/paper-hop.webp',
+  },
+  {
+    year: '2026',
+    title: 'Decoupling the Harness from the Model',
+    venue: 'mlpal research',
+    url: 'https://mlpal.ai/research/decoupling-harness-from-model',
+    preview: '/work/paper-decoupling.webp',
+  },
+  {
+    year: '2022',
+    title: 'Application of Transformers in Audio Classification',
+    venue: 'UC Davis',
+    url: 'https://github.com/Saivivek-Peddi/audio_transformer',
+  },
+]
+
+export const teaching = [
+  { when: 'Fall 2021, Spring 2022', what: 'TA, Machine Learning', where: 'UC Davis' },
+  { when: 'Winter 2022', what: 'TA, Programming Languages', where: 'UC Davis' },
+  { when: 'Summer 2022', what: 'TA, Design & Analysis of Algorithms', where: 'UC Davis' },
+  { when: '2023 —', what: 'Led 15 grad students on LLM hardware acceleration', where: 'UC Davis × AMD' },
+]

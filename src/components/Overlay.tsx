@@ -5,9 +5,10 @@ import { sound } from '../lib/sound'
 import { scrollToHash } from './SmoothScroll'
 
 const NAV = [
-  { label: 'Work', href: '/#work' },
+  { label: 'Story', href: '/#story' },
+  { label: 'Built', href: '/#built' },
+  { label: 'Life', href: '/#life' },
   { label: 'Writing', href: '/#writing' },
-  { label: 'Contact', href: '/#contact' },
 ]
 
 const MOUNTAIN_VIEW = { lat: 37.39, lon: -122.08 }

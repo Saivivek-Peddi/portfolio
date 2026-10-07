@@ -21,7 +21,7 @@ export const NOT_FOUND_PATH = '/404'
 export const routes: Route[] = [
   {
     path: '/',
-    title: `${profile.name}, founder of mlpal`,
+    title: `${profile.name}: engineer, researcher, co-founder of mlpal`,
     description,
     type: 'website',
     element: () => <Home />,

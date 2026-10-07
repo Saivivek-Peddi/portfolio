@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const PHRASES = ['Own the\nloop around\nthe model', 'Ship only\nwhat passes\nthe evals', 'Stay hungry\nstay\nfoolish']
+const PHRASES = ['Success is\nnot final', 'Failure is\nnot fatal', 'The courage\nto continue\ncounts', 'Stay hungry\nstay\nfoolish']
 const COLORS = ['#5cf2ff', '#3a6bff', '#8a5cff', '#ffffff', '#20d7ff', '#3a6bff']
 const STARS = 640
 
@@ -112,12 +112,15 @@ export function Finale() {
   useWarp(canvas, active, boost)
 
   return (
-    <section ref={section} data-ink="light" className="relative h-[300vh] bg-black text-white" aria-label="Closing statement">
+    <section ref={section} data-ink="light" className="relative h-[400vh] bg-black text-white" aria-label="Closing statement">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <canvas ref={canvas} className="absolute inset-0 h-full w-full" aria-hidden />
-        <p key={phrase} className="phrase shout relative px-5 text-center text-[clamp(2.8rem,8vw,8.5rem)] whitespace-pre-line">
-          {PHRASES[phrase]}
-        </p>
+        <div className="relative px-5 text-center">
+          <p key={phrase} className="phrase shout text-[clamp(2.8rem,8vw,8.5rem)] whitespace-pre-line">
+            {PHRASES[phrase]}
+          </p>
+          <p className="ui mt-8 text-white/60">{phrase < 3 ? 'Churchill. The line I keep coming back to.' : 'The banner on my LinkedIn.'}</p>
+        </div>
       </div>
     </section>
   )

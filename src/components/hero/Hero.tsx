@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePrefs } from '../../lib/prefs'
+import { profile } from '../../content/profile'
 import { Rise } from '../Rise'
 import type { HeroScene } from './scene'
 import type { StickerField } from '../stickers/physics'
@@ -124,21 +125,22 @@ export function Hero() {
 
       <div className="relative z-10 grid h-full grid-cols-12 grid-rows-[auto_1fr_auto] gap-x-4 px-5 pt-24 pb-20 md:px-16 md:pt-28 md:pb-24">
         <p className="col-span-12 text-[1.65rem] leading-[1.1] font-[450] md:col-span-4 md:text-[2rem]">
-          <Rise text={'Founder,\nmlpal'} />
+          <Rise text={'Engineer,\nresearcher,\nco-founder'} />
         </p>
         <p className="mono col-span-6 mt-6 hidden md:col-span-4 md:mt-1 md:block">
-          Thinking in loops.
+          Kernels to agents.
           <br />
-          Shipping with evals.
+          Dosa to homemade bread.
+          <br />
+          Hyderabad to Mountain View.
         </p>
         <p className="mono col-span-12 mt-4 max-w-[46ch] md:col-span-4 md:mt-1">
-          I&rsquo;m Sai Vivek Peddi. I build mlpal: a model gateway, a tunable harness and governed memory that companies
-          own, and that gets better against their own evals.
+          {profile.summary}
         </p>
 
         <div className="col-span-12 row-start-3 flex items-end justify-between gap-6">
-          <h1 id="hero-title" className="shout text-[clamp(2.6rem,6.4vw,6.4rem)]">
-            <Rise text={'I build the loop\naround the model'} delay={2} />
+          <h1 id="hero-title" className="shout text-[clamp(2.4rem,5.6vw,5.8rem)]">
+            <Rise text={profile.headline} delay={2} />
           </h1>
           <p className="ui mb-2 hidden shrink-0 text-fg/60 lg:block">[ Click anywhere ]</p>
         </div>

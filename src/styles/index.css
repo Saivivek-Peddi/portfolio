@@ -239,3 +239,33 @@
     scale: 0.92;
   }
 }
+
+/* Generative covers come alive on hover. */
+.group:hover .art-blink { animation: art-blink 900ms steps(2) infinite; }
+.group:hover .art-pulse { animation: art-pulse 1.4s ease-in-out infinite; }
+.group:hover .art-eq { animation: art-eq 900ms ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.group:hover .art-spin { animation: art-spin 6s linear infinite; transform-box: fill-box; transform-origin: center; }
+.group:hover .art-grow { animation: art-grow 1.2s var(--ease-out-expo) both; transform-box: fill-box; transform-origin: left; }
+@keyframes art-blink { 50% { opacity: 0.15; } }
+@keyframes art-pulse { 50% { opacity: 0.35; } }
+@keyframes art-eq { to { transform: scaleY(0.35); } }
+@keyframes art-spin { to { transform: rotate(360deg); } }
+@keyframes art-grow { from { transform: scaleX(0); } }
+
+/* Off the clock */
+.helicopter { animation: helicopter 900ms var(--ease-out-expo); transform-origin: 60% 70%; }
+@keyframes helicopter { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
+.sixer { animation: sixer 1.1s cubic-bezier(0.2, 0.6, 0.3, 1) forwards; }
+@keyframes sixer {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(-420px, -340px) scale(0.4); opacity: 0; }
+}
+.steam { opacity: 0; transition: opacity 400ms; }
+.group:hover .steam { opacity: 0.4; animation: steam 1.6s ease-in-out infinite; }
+@keyframes steam { 50% { transform: translateY(-4px); } }
+.proof { transform-box: fill-box; transform-origin: bottom; transition: transform 1.2s var(--ease-out-expo); }
+.group:hover .proof { transform: scale(1.06, 1.14); }
+.eq { height: 30%; animation: eq 1s ease-in-out infinite alternate; }
+@keyframes eq { 0% { height: 15%; } 50% { height: 100%; } 100% { height: 45%; } }
+.track { animation: track-in 600ms var(--ease-out-expo) both; }
+@keyframes track-in { from { opacity: 0; translate: 0 8px; } }

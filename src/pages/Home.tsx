@@ -1,6 +1,9 @@
 import { Hero } from '../components/hero/Hero'
 import { About } from '../components/About'
-import { Work } from '../components/Work'
+import { Story } from '../components/Story'
+import { Built } from '../components/Built'
+import { Life } from '../components/Life'
+import { Community } from '../components/Community'
 import { Research } from '../components/Research'
 import { Writing } from '../components/Writing'
 import { Finale } from '../components/Finale'
@@ -11,7 +14,10 @@ export function Home() {
     <>
       <Hero />
       <About />
-      <Work />
+      <Story />
+      <Built />
+      <Life />
+      <Community />
       <Research />
       <Writing />
       <Finale />

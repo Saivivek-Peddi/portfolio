@@ -154,6 +154,64 @@ export const STICKERS: StickerArt[] = [
        <circle cx="60" cy="84" r="4" fill="#fff"/><circle cx="92" cy="84" r="4" fill="#fff"/>`,
     ),
   },
+  {
+    id: 'dosa',
+    label: 'dosa',
+    svg: sticker(
+      `<path d="M18 104C40 50 120 50 142 104z" fill="url(#ds)" stroke="#8a4b12" stroke-width="4" stroke-linejoin="round"/>
+       ${[44, 62, 80, 98, 116].map((x, i) => `<circle cx="${x}" cy="${86 - (i % 2) * 8}" r="3" fill="#a85a17" opacity="0.6"/>`).join('')}
+       <ellipse cx="44" cy="120" rx="16" ry="9" fill="#fff" stroke="#151515" stroke-width="3"/>
+       <ellipse cx="116" cy="120" rx="16" ry="9" fill="#e8562a" stroke="#151515" stroke-width="3"/>`,
+      `<linearGradient id="ds" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c260"/><stop offset="1" stop-color="#d98a2b"/></linearGradient>`,
+    ),
+  },
+  {
+    id: 'bread',
+    label: 'homemade bread',
+    svg: sticker(
+      `<path d="M28 116c-8-44 20-68 52-68s60 24 52 68z" fill="#d9a35b" stroke="#151515" stroke-width="4" stroke-linejoin="round"/>
+       <path d="M58 70c8 8 8 22 0 32M80 64c8 9 8 26 0 38M102 70c8 8 8 22 0 32" fill="none" stroke="#9c6526" stroke-width="4" stroke-linecap="round"/>`,
+    ),
+  },
+  {
+    id: 'ball',
+    label: 'cricket ball',
+    svg: sticker(
+      `<circle cx="80" cy="80" r="46" fill="url(#cb)"/>
+       <path d="M52 44c18 22 18 50 0 72M108 44c-18 22-18 50 0 72" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="5 5"/>
+       <ellipse cx="64" cy="62" rx="12" ry="7" fill="#fff" opacity="0.45" transform="rotate(-30 64 62)"/>`,
+      `<radialGradient id="cb" cx="0.35" cy="0.3"><stop offset="0" stop-color="#ff4d5e"/><stop offset="1" stop-color="#a3101e"/></radialGradient>`,
+    ),
+  },
+  {
+    id: 'shuttle',
+    label: 'shuttlecock',
+    svg: sticker(
+      `<g transform="rotate(-30 80 80)"><path d="M52 30h56l-16 70H68z" fill="#fff" stroke="#151515" stroke-width="4" stroke-linejoin="round"/>
+       <path d="M64 30l10 70M80 30v70M96 30l-10 70M56 54h48M60 78h40" stroke="#151515" stroke-width="2" opacity="0.4"/>
+       <path d="M66 100h28v10a14 14 0 0 1-28 0z" fill="#d7ff3a" stroke="#151515" stroke-width="4"/></g>`,
+    ),
+  },
+  {
+    id: 'headphones',
+    label: 'headphones',
+    svg: sticker(
+      `<path d="M34 96V82a46 46 0 0 1 92 0v14" fill="none" stroke="#151515" stroke-width="10" stroke-linecap="round"/>
+       <rect x="24" y="86" width="28" height="44" rx="12" fill="#8a5cff" stroke="#151515" stroke-width="4"/>
+       <rect x="108" y="86" width="28" height="44" rx="12" fill="#8a5cff" stroke="#151515" stroke-width="4"/>
+       <path d="M74 64v26a8 8 0 1 1-6-8" fill="none" stroke="#d7ff3a" stroke-width="5" stroke-linecap="round"/>`,
+    ),
+  },
+  {
+    id: 'book',
+    label: 'book',
+    svg: sticker(
+      `<g transform="rotate(-8 80 80)"><rect x="40" y="26" width="80" height="108" rx="6" fill="#1b31d6" stroke="#151515" stroke-width="4"/>
+       <rect x="40" y="26" width="12" height="108" fill="#0d1a6e"/>
+       <circle cx="88" cy="66" r="14" fill="#d7ff3a"/><circle cx="88" cy="66" r="5" fill="#1b31d6"/>
+       <path d="M62 108h44M62 118h30" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g>`,
+    ),
+  },
 ]
 
 export const STICKER_SIZE = SIZE
