@@ -257,7 +257,8 @@ export function createHeroScene(canvas: HTMLCanvasElement, opts: { theme: Theme;
     const byWidth = ((w < 768 ? 0.9 : 0.56) * viewW) / (BOUNDS.width * unit)
     const byHeight = ((w < 768 ? 0.3 : 0.4) * viewH) / (BOUNDS.height * unit)
     word.scale.setScalar(Math.min(1.25, byWidth, byHeight))
-    word.position.set(w < 768 ? 0 : viewW * 0.08, w < 768 ? viewH * 0.06 : viewH * 0.1, 0)
+    // Centered horizontally on every screen size.
+    word.position.set(0, w < 768 ? viewH * 0.06 : viewH * 0.1, 0)
     // No pointer to follow on touch screens, and no room beside the headline.
     cursor.visible = w >= 768 && matchMedia('(pointer: fine)').matches
   }

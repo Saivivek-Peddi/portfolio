@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useInView } from './useInView'
+import { profile } from '../content/profile'
 import { Rise } from './Rise'
 
 const BITSIANS = 11_000
@@ -36,7 +37,9 @@ export function Community() {
     <section id="community" ref={ref} className="grid grid-cols-12 gap-x-4 px-5 py-24 md:px-16 md:py-36" aria-labelledby="community-title">
       <div className="ui col-span-12 flex items-baseline justify-between border-b border-line pb-3">
         <h2 id="community-title">Community</h2>
-        <span className="text-dim">BITS Alumni Association, Bay Area</span>
+        <a href={profile.links.bitsaa} className="wipe text-dim">
+          BITSAA Silicon Valley Chapter
+        </a>
       </div>
       <p className="shout col-span-12 mt-12 text-[clamp(4.5rem,17vw,17rem)] leading-[0.85] text-lime [-webkit-text-stroke:1px_var(--fg)] dark:[-webkit-text-stroke:0]">
         <CountUp to={BITSIANS} play={inView} />
@@ -44,11 +47,14 @@ export function Community() {
       <p className="ui col-span-12 mt-3 text-dim">BITSians in the Bay Area</p>
       <div className="col-span-12 mt-12 md:col-span-7 md:col-start-6">
         <p className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.1] font-[440] tracking-[-0.015em]">
-          <Rise text="I co-lead the BITS alumni association here as its COO. We're a registered nonprofit, and we run events all year to bring this community together." />
+          <Rise text="I co-lead the BITS Alumni Association in the Bay Area as its COO. We're a registered nonprofit, and we run events all year to bring this community together." />
         </p>
         <p className="mono mt-6 max-w-[52ch] text-dim">
           Lots of events, one goal: keep the BITS spirit alive a long way from campus.
         </p>
+        <a href={profile.links.bitsaa} className="ui wipe mt-6 inline-block">
+          Follow along @bitsaa.svc
+        </a>
       </div>
     </section>
   )

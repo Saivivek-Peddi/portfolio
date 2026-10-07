@@ -1,6 +1,6 @@
 # Sai Vivek Peddi
 
-> Engineer, researcher and co-founder of mlpal (https://mlpal.ai). Grew up in Hyderabad; B.E. BITS Pilani, M.S. CS UC Davis; previously KFintech and JPMorgan Chase. Co-founded mlpal with Dipak Ghosal and Prem Jain. Builds ML systems from GPU kernels to coding agents. COO of the BITS alumni association in the Bay Area (11,000 BITSians). Goes by Sai; close friends call him Peddi. Photographer (Instagram @_forgotten_chornicles). Off the clock: badminton, cricket (all-rounder, Dhoni fan), cooking (dosa, homemade bread), music, books. Based in Mountain View, CA. Contact: svp@mlpal.ai
+> Engineer, researcher and co-founder of mlpal (https://mlpal.ai). Grew up in Hyderabad; B.E. BITS Pilani, M.S. CS UC Davis; previously KFintech and JPMorgan Chase. Co-founded mlpal with Dipak Ghosal and Prem Jain. Builds ML systems from GPU kernels to coding agents. co-leads the BITS Alumni Association in the Bay Area as COO (BITSAA Silicon Valley Chapter, instagram.com/bitsaa.svc; 11,000 BITSians). Goes by Sai; close friends call him Peddi. Photographer (Instagram @_forgotten_chornicles). Off the clock: badminton, cricket (all-rounder, Dhoni fan), cooking (dosa, homemade bread), music, books. Based in Mountain View, CA. Contact: svp@mlpal.ai
 
 ## Pages
 
