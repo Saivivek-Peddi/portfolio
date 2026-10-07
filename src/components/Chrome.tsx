@@ -1,8 +1,25 @@
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
+import { sound } from '../lib/sound'
 import { Overlay } from './Overlay'
 import { SmoothScroll } from './SmoothScroll'
 
+// One delegated listener gives every link and button a hover tick (only audible with sound on).
+function useHoverTicks() {
+  useEffect(() => {
+    let last: Element | null = null
+    const onOver = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return
+      const el = (e.target as Element).closest('a, button')
+      if (el && el !== last) sound.tick()
+      last = el
+    }
+    document.addEventListener('pointerover', onOver)
+    return () => document.removeEventListener('pointerover', onOver)
+  }, [])
+}
+
 export function Chrome({ children }: { children: ReactNode }) {
+  useHoverTicks()
   return (
     <>
       <SmoothScroll />

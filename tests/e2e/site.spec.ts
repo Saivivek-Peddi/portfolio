@@ -142,3 +142,32 @@ test('photo lightbox opens, steps and closes', async ({ page }) => {
   await page.keyboard.press('Escape')
   await expect(dialog).toHaveCount(0)
 })
+
+test('sound toggle starts and stops the soundtrack', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'the sound toggle is shown on desktop only')
+  await page.addInitScript(() => {
+    const w = window as unknown as { __osc: number }
+    w.__osc = 0
+    const create = AudioContext.prototype.createOscillator
+    AudioContext.prototype.createOscillator = function () {
+      w.__osc++
+      return create.call(this)
+    }
+  })
+  await page.goto('/')
+  const toggle = page.getByRole('button', { name: /Sound/ })
+  await toggle.click()
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true')
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __osc: number }).__osc)).toBeGreaterThan(5)
+  await toggle.click()
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false')
+})
+
+test('closing quote is shown whole, without pinning the page', async ({ page }) => {
+  await page.goto('/')
+  const quote = page.getByRole('region', { name: 'Closing quote' })
+  await quote.scrollIntoViewIfNeeded()
+  await expect(quote).toContainText("Success is not final. Failure is not fatal. It's the courage to continue that counts.")
+  const h = await quote.evaluate((el) => el.getBoundingClientRect().height)
+  expect(h).toBeLessThan(1.5 * (await page.evaluate(() => innerHeight)))
+})

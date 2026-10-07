@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { beliefs } from '../content/life'
+import { Rise } from './Rise'
 
-const PHRASES = ['Success is\nnot final.', 'Failure is\nnot fatal.', "It's the courage\nto continue\nthat counts.", 'Stay hungry,\nstay\nfoolish.']
 const COLORS = ['#5cf2ff', '#3a6bff', '#8a5cff', '#ffffff', '#20d7ff', '#3a6bff']
 const STARS = 640
 
@@ -78,7 +78,6 @@ export function Finale() {
   const section = useRef<HTMLElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
   const boost = useRef(0)
-  const [phrase, setPhrase] = useState(0)
   const [active, setActive] = useState(false)
 
   useEffect(() => {
@@ -94,37 +93,28 @@ export function Finale() {
         boost.current = Math.min(3, Math.abs(self.getVelocity()) / 900)
       },
     })
-    const steps = ScrollTrigger.create({
-      trigger: el,
-      start: 'top top',
-      end: 'bottom bottom',
-      onUpdate: (self) => setPhrase(Math.min(PHRASES.length - 1, Math.floor(self.progress * PHRASES.length))),
-    })
-    const decay = gsap.ticker.add(() => {
+    const decay = () => {
       boost.current *= 0.94
-    })
+    }
+    gsap.ticker.add(decay)
     return () => {
       st.kill()
-      steps.kill()
       gsap.ticker.remove(decay)
     }
   }, [])
 
   useWarp(canvas, active, boost)
 
+  // One quote, whole, on one screen. No pinning: the page keeps scrolling.
   return (
-    <section ref={section} data-ink="light" className="relative h-[400vh] bg-black text-white" aria-label="Closing statement">
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        <canvas ref={canvas} className="absolute inset-0 h-full w-full" aria-hidden />
-        <div className="relative px-5 text-center">
-          <p key={phrase} className="phrase shout text-[clamp(2.8rem,8vw,8.5rem)] whitespace-pre-line">
-            {PHRASES[phrase]}
-          </p>
-          <p className="ui mx-auto mt-8 max-w-[44ch] text-white/60">
-            {phrase < 3 ? <>&ldquo;{beliefs.churchill}&rdquo; &mdash; Winston Churchill. The line I keep coming back to.</> : 'The banner on my LinkedIn.'}
-          </p>
-        </div>
-      </div>
+    <section ref={section} data-ink="light" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-black text-white" aria-label="Closing quote">
+      <canvas ref={canvas} className="absolute inset-0 h-full w-full" aria-hidden />
+      <figure className="relative px-5 text-center">
+        <blockquote className="mx-auto max-w-[19ch] text-[clamp(2rem,4.8vw,4.6rem)] leading-[1.05] font-[620] tracking-[-0.02em] text-balance">
+          <Rise text={beliefs.churchill} />
+        </blockquote>
+        <figcaption className="ui mt-8 text-white/60">Winston Churchill</figcaption>
+      </figure>
     </section>
   )
 }

@@ -229,16 +229,6 @@
   opacity: 0;
 }
 
-.phrase {
-  animation: phrase-in 900ms var(--ease-out-expo) both;
-}
-@keyframes phrase-in {
-  from {
-    opacity: 0;
-    filter: blur(14px);
-    scale: 0.92;
-  }
-}
 
 /* Generative covers come alive on hover. */
 .group:hover .art-blink { animation: art-blink 900ms steps(2) infinite; }

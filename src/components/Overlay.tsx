@@ -137,7 +137,7 @@ export function Overlay() {
   return (
     <div ref={overlay} className="pointer-events-none fixed inset-0 z-40 flex flex-col justify-between">
       <header className={`pointer-events-auto flex items-start justify-between px-5 pt-5 transition-colors duration-300 md:px-16 md:pt-9 ${inkClass(ink.top)}`}>
-        <a href="/" className="text-[0.95rem] font-bold uppercase tracking-tight" onMouseEnter={sound.tick}>
+        <a href="/" className="text-[0.95rem] font-bold uppercase tracking-tight">
           Sai Vivek Peddi
         </a>
         <nav aria-label="Primary" className="ui flex items-center gap-6 md:gap-14">
@@ -146,20 +146,25 @@ export function Overlay() {
               key={n.href}
               href={n.href}
               onClick={(e) => navigate(e, n.href)}
-              onMouseEnter={sound.tick}
               className="wipe hidden sm:inline"
             >
               {n.label}
             </a>
           ))}
-          <button type="button" onClick={prefs.cycleTheme} className="wipe uppercase" aria-label={`Theme: ${pref}. Change theme`}>
+          <button
+            type="button"
+            onClick={() => {
+              prefs.cycleTheme()
+              sound.chime()
+            }}
+            className="wipe uppercase" aria-label={`Theme: ${pref}. Change theme`}>
             Theme[{themeGlyph}]
           </button>
           <button
             type="button"
             onClick={() => {
               prefs.toggleSound()
-              sound.pop()
+              sound.sync()
             }}
             className="wipe hidden uppercase md:inline"
             aria-pressed={soundOn}
